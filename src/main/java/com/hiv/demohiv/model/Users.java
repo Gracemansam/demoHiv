@@ -9,14 +9,14 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "app-users")
+@Table(name = "app_users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Users implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;

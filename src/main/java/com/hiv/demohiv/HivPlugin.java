@@ -2,6 +2,7 @@ package com.hiv.demohiv;
 
 import org.laxture.sbp.SpringBootPlugin;
 import org.laxture.sbp.spring.boot.IPluginConfigurer;
+import org.laxture.sbp.spring.boot.SbpJpaConfigurer;
 import org.laxture.sbp.spring.boot.SpringBootstrap;
 
 import org.laxture.sbp.spring.boot.configurer.SbpDataSourceConfigurer;
@@ -11,12 +12,13 @@ public class HivPlugin extends SpringBootPlugin {
 
 
     public HivPlugin(PluginWrapper wrapper) {
-        super(wrapper,new SbpDataSourceConfigurer());
-    }
+        super(wrapper,new SbpJpaConfigurer(new String[] {"com.hiv.demohiv.model"}));}
 
     @Override
     protected SpringBootstrap createSpringBootstrap() {
-
         return new SpringBootstrap(this, DemohivApplication.class);
     }
 }
+
+
+

@@ -10,13 +10,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<Users, Long>, JpaSpecificationExecutor<Users> {
 
+public interface UserRepository extends JpaRepository<Users, Long>,
+        JpaSpecificationExecutor<Users> {
 
-    @Modifying
-    @Transactional
+    @Modifying(clearAutomatically = true)
     @Query(value = "INSERT INTO app_users (name, email, password) VALUES (:name, :email, :password)", nativeQuery = true)
     void customSave(@Param("name") String name, @Param("email") String email, @Param("password") String password);
 
+    @Override
+    Optional<Users> findById(Long id);
 }
